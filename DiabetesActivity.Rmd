@@ -1,0 +1,31 @@
+---
+title: "DiabetesActivity"
+author: "Chandler Scott-Smith"
+date: "2022-09-08"
+output: html_document
+---
+
+```{r chunk 1}
+#Using pacman package to help with installing and loading needed packages
+pacman::p_load(haven, readr, dplyr, openxlsx)
+
+# Importing data set from Github and naming "diabetes":
+diabetes <-read_csv("https://raw.githubusercontent.com/chscottsmith/Git-Activity-9-7/main/DiabetesAtlasData.csv")
+
+#There are 3142 rows and 6 columns
+```
+
+```{r chunk 2}
+#finding the county with the highest diabetes prevalence. Starting with a summary of the dataframe:
+summary(diabetes)
+
+#Can also use this to find the max in a dataframe column:
+max(diabetes$`Diagnosed Diabetes Percentage`, na.rm = T)
+
+#the max valaue for diabetes prevalence is 17.9. Now need to identify which county that is, using code help from https://sparkbyexamples.com/r-programming/select-rows-in-r/#:~:text=By%20using%20bracket%20notation%20on,the%20rows%20from%20the%20DataFrame.:
+
+diabetes[diabetes$`Diagnosed Diabetes Percentage` == 17.9,]
+
+#Oglala Lakota County has the highest prevalance of diabetes (17.9%)
+
+```
